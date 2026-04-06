@@ -202,4 +202,35 @@ Test the complete workflow against a real or staging SynBioHub instance.
 
 ## Status
 
-This repository is currently in the **planning and scaffolding** stage.
+This repository now includes an initial runnable MVP scaffold:
+
+- `packages/draggon_inventory_sbol`: domain schema, factories, validation, and RDF/XML serialization helper.
+- `server/app`: FastAPI API with stub-mode SynBioHub service and inventory orchestration flow.
+- `web/src`: React + TypeScript mobile-first flow for login, collection browsing, create, review, and success.
+
+## Running locally
+
+### 1) Python package + backend
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -e packages/draggon_inventory_sbol
+pip install -e server
+uvicorn app.main:app --reload --app-dir server
+```
+
+### 2) Frontend
+
+```bash
+cd web
+npm install
+npm run dev
+```
+
+### 3) Execute tests
+
+```bash
+pytest packages/draggon_inventory_sbol/tests
+pytest server/tests
+```
