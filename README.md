@@ -135,7 +135,7 @@ Responsible for:
 - review and submit flow
 - mobile-friendly interaction
 
-More detail is in [docs/architecture.md](docs/architecture.md).
+More detail is in [docs/ARCHITECHTURE.md](docs/ARCHITECHTURE.md).
 
 ## Technology direction
 
@@ -194,12 +194,39 @@ Test the complete workflow against a real or staging SynBioHub instance.
 
 ## Suggested next files to read
 
-- [docs/product.md](docs/product.md)
-- [docs/architecture.md](docs/architecture.md)
-- [docs/api.md](docs/api.md)
+- [docs/PRODUCT.md](docs/PRODUCT.md)
+- [docs/ARCHITECHTURE.md](docs/ARCHITECHTURE.md)
+- [docs/API.md](docs/API.md)
 - [DEVELOPMENT.md](DEVELOPMENT.md)
 - [ROADMAP.md](ROADMAP.md)
 
 ## Status
 
-This repository is currently in the **planning and scaffolding** stage.
+This repository now includes an initial runnable MVP scaffold for the SBOL package, FastAPI backend, and React frontend in stub-mode development.
+
+
+## Local scaffold run (MVP)
+
+### Backend
+
+```bash
+cd server
+pip install -e .
+PYTHONPATH=../packages/draggon_inventory_sbol/src:. uvicorn app.main:app --reload --port 8000
+```
+
+### Frontend
+
+```bash
+cd web
+npm install
+npm run dev
+```
+
+### Tests
+
+```bash
+python -m pip install -e packages/draggon_inventory_sbol[dev]
+python -m pip install -e server[dev]
+PYTHONPATH=packages/draggon_inventory_sbol/src:server pytest packages/draggon_inventory_sbol/tests server/tests
+```
